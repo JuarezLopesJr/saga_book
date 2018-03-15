@@ -38,7 +38,7 @@ class SignupPage extends Component {
       this.setState({ loading: true });
 
       this.props.signupUser(this.state.data);
-      this.props.history.push('/dashboard');
+      // this.props.history.push('/dashboard');
     }
   };
 
@@ -115,10 +115,10 @@ class SignupPage extends Component {
                   Register
                 </Button>
               </Segment>
+              <Message>
+                Already have an account ? <Link to="/login">Log In</Link>
+              </Message>
             </Form>
-            <Message>
-              Already have an account ? <Link to="/login">Log In</Link>
-            </Message>
             {errorList.length ? (
               <Message
                 error

@@ -13,16 +13,14 @@ router.post('/', async (req, res) => {
   console.log(user);
 });
 
-export default router;
+router.post('/confirmation', async (req, res) => {
+  const { token } = req.body;
+  const user = await User.findOneAndUpdate(
+    { confirmationToken: token },
+    { confirmationToken: '', confirmed: true },
+    { new: true }
+  );
+  user ? res.json({ user: user.toAuthJSON() }) : res.status(400).json({});
+});
 
-// const { email, password } = req.body.data;
-// const passwordHash = await bcrypt.hashSync(password, 10);
-// // const tokenHash = jwt.sign({ email }, process.env.JWT_SECRET);
-// const user = await new User({
-//   email,
-//   password: passwordHash
-//   // token: tokenHash
-// }).save();
-// res.json({ user: user.toAuthJSON() });
-//
-// console.log(user);
+export default router;

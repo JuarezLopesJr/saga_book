@@ -1,4 +1,4 @@
-import { LOGIN_USER, LOG_OUT, SIGNUP_USER } from './types';
+import { LOGIN_USER, LOG_OUT, SIGNUP_USER, CONFIRM_USER } from './types';
 
 export const signupUser = user => {
   return {
@@ -17,5 +17,12 @@ export const loginUser = data => {
 export const logUserOut = () => {
   return {
     type: LOG_OUT
+  };
+};
+
+export const confirmUser = token => {
+  return {
+    type: CONFIRM_USER,
+    token
   };
 };
