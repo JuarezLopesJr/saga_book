@@ -1,4 +1,4 @@
-import { takeLatest, take } from 'redux-saga/effects';
+import { takeLatest } from 'redux-saga/effects';
 //import { all, fork } from 'redux-saga/effects'
 // import * as userSaga from './userSaga.js'
 
@@ -16,7 +16,7 @@ export default function* rootSaga() {
   yield takeLatest(LOGIN_USER, loginUserSaga);
   yield takeLatest(LOG_OUT, logoutUserSaga);
   yield takeLatest(SIGNUP_USER, signupUserSaga);
-  yield take(CONFIRM_USER, confirmUserSaga);
+  yield takeLatest(CONFIRM_USER, confirmUserSaga);
 }
 
 // export default function* rootSaga() {
