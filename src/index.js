@@ -6,6 +6,7 @@ import createSagaMiddleware from 'redux-saga';
 import { composeWithDevTools } from 'redux-devtools-extension';
 import { Provider } from 'react-redux';
 import { createStore, applyMiddleware } from 'redux';
+import decode from 'jwt-decode';
 import 'semantic-ui-css/semantic.min.css';
 
 import App from './App';
@@ -22,7 +23,12 @@ const store = createStore(
 sagaMiddleware.run(rootSaga);
 
 if (localStorage.loginAuth) {
-  const user = { token: localStorage.loginAuth };
+  const payload = decode(localStorage.loginAuth);
+  const user = {
+    token: localStorage.loginAuth,
+    email: payload.email,
+    confirmed: payload.confirmed
+  };
   store.dispatch(loginUser(user));
 }
 
